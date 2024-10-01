@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>랜덤 질문 매칭</title>
+</head>
+<body>
+<div class="container">
+    <h1>질문 입력하기</h1>
+    <form action="/submit" method="post">
+        <input type="text" name="nickname" placeholder="닉네임" required>
+        <input type="text" name="question" placeholder="질문" required>
+        <button type="submit">제출하기</button>
+    </form>
+
+    <h2>입력된 질문들</h2>
+    <ul>
+        <th:block th:each="q : ${questions}">
+            <li th:text="${q.nickname} + ': ' + ${q.question}"></li>
+        </th:block>
+    </ul>
+
+    <form action="/randomize" method="post">
+        <button type="submit">랜덤 질문 시작하기</button>
+    </form>
+
+    <h2>랜덤 매칭 결과</h2>
+    <ul>
+        <th:block th:each="rq : ${randomizedQuestions}">
+            <li th:text="${rq.nickname} + ': ' + ${rq.question}"></li>
+        </th:block>
+    </ul>
+</div>
+<script src="/js/script.js"></script>
+</body>
+</html>
